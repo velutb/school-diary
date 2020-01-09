@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    {% block first %}
+    {% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'homepage' %}">
+          <img src="{% static 'bober.png' %}" width="40" height="40" class="d-inline-block align-center" alt="">
+          Гимназия 56
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Расписание</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Дневник</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Загрузки</a>
+              </li>
+            </ul>
+        </div>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+          </form>
+    </nav>
+    <div class="container" style="padding-top: 50px;">
+        <div class="row justify-content-center">
+          <div class="col-lg-15 col-md-12">
+            <div class="card mb-4">
+              <div class="card-body">
+                {% block content %}
+                {% endblock %}
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</body>
+</html>
