@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 <title>Расписание</title>
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <p>Расписание.</p>
+<div class="container my-5">
+    <p>Вы можете скачать расписание в формате PDF или простреть его онлайн, выбрав свой класс.</p>
+    <a class="btn btn-primary text-decoration-none" href="{% url 'timetable_download' %}">Скачать в формате PDF</a>
 </div>
 {% endblock %}
