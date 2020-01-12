@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 DAYS = [
     ("Понедельник", "Понедельник"),
@@ -54,7 +54,7 @@ class Grades(models.Model):
 class Lessons(models.Model):
     connection = models.ForeignKey(Grades, on_delete=models.CASCADE, verbose_name="У какого класса урок")
     day = models.CharField(max_length=11, choices=DAYS, verbose_name="День недели")
-    number = models.IntegerField(verbose_name="Номер урока")
+    number = models.IntegerField(verbose_name="Номер урока", validators=[MinValueValidator(0), MaxValueValidator(8)])
     start = models.TimeField(verbose_name="Начало урока")
     end = models.TimeField(verbose_name="Конец урока")
     subject = models.CharField(max_length=50, verbose_name="Предмет")
@@ -62,9 +62,12 @@ class Lessons(models.Model):
     
     
     class Meta:
-        ordering = ['day', 'number']
+        ordering = ['connection', 'day', 'number']
         verbose_name = "Урок"
         verbose_name_plural = "Уроки"
 
     def __str__(self):
-        return str(self.number) + "й урок в " + self.day.lower() + " у " + str(self.connection)
+        if self.day != "Вторник":
+            return str(self.number) + "й урок в " + self.day.lower() + " у " + str(self.connection)
+        else:
+            return str(self.number) + "й урок во " + self.day.lower() + " у " + str(self.connection)
