@@ -67,4 +67,7 @@ class Lessons(models.Model):
         verbose_name_plural = "Уроки"
 
     def __str__(self):
-        return str(self.number) + "й урок во " + self.day.lower() + " у " + str(self.connection)
+        if self.day != "Вторник":
+            return str(self.number) + "й урок в " + self.day.lower() + " у " + str(self.connection)
+        else:
+            return str(self.number) + "й урок во " + self.day.lower() + " у " + str(self.connection)
