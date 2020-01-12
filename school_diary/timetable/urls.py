@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.timetable, name='timetable'),
-    path('download/', views.download, name='timetable_download')
+    path('download/', views.download, name='timetable_download'),
 ]
