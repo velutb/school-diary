@@ -9,6 +9,7 @@ def timetable(request):
         if form.is_valid():
             chosen_grade = form.cleaned_data['grade']
             chosen_litera = form.cleaned_data['litera']
+            chosen_class = str(chosen_grade) + chosen_litera
             try:
                 my_grade = Grades.objects.get(number=chosen_grade, letter=chosen_litera)
                 lessons_list_monday = Lessons.objects.filter(connection=my_grade.id, day="Понедельник")
@@ -17,14 +18,16 @@ def timetable(request):
                 lessons_list_thursday = Lessons.objects.filter(connection=my_grade.id, day="Четверг")
                 lessons_list_friday = Lessons.objects.filter(connection=my_grade.id, day="Пятница")
                 lessons_list_saturday = Lessons.objects.filter(connection=my_grade.id, day="Суббота")
-                return render(request, 'timetable_list.html', {'monday': lessons_list_monday,
-                'tuesday': lessons_list_tuesday,
-                'wednesday': lessons_list_wednesday,
-                'thursday': lessons_list_thursday,
-                'friday': lessons_list_friday,
-                'saturday': lessons_list_saturday})
-            except:
-                return HttpResponse("Ваш класс не найден в базе данных.")
+                return render(request, 'timetable_list.html', {
+                    'my_grade': chosen_class,
+                    'monday': lessons_list_monday,
+                    'tuesday': lessons_list_tuesday,
+                    'wednesday': lessons_list_wednesday,
+                    'thursday': lessons_list_thursday,
+                    'friday': lessons_list_friday,
+                    'saturday': lessons_list_saturday})
+            except Exception as message:
+                return HttpResponse("Ваш класс не найден в базе данных. Ошибка: %s" % message)
     else:
         form = GetTimeTableForm()
     return render(request, 'timetable.html', {'form': form})

@@ -7,22 +7,32 @@
 
 {% block content %}
 <div class="container my-5">
-    <p>{{ grade }}</p>
-    {% if monday.count > 0 %}
-    <table class="table">
-        <tr>
-            <th>Номер</th>
-            <th>День недели</th>
-            <th>Предмет</th>
-        </tr>
-        {% for lesson in monday %}
-        <tr>
-            <td>{{ lesson.number }}</td>
-            <td>{{ lesson.day }}</td>
-            <td>{{ lesson.subject }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% endif %}
+    <p>Показано расписание для класса: {{ my_grade }}</p>
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title">
+                <h5>Понедельник</h5>
+            </div>
+            {% if monday.count > 0 %}
+            <table class="table">
+                <tr>
+                    <th>Номер</th>
+                    <th>Начало</th>
+                    <th>Конец</th>
+                    <th>Предмет</th>
+                    <th></th>
+                </tr>
+                {% for lesson in monday %}
+                <tr>
+                    <td>{{ lesson.number }}</td>
+                    <td>{{ lesson.start }}</td>
+                    <td>{{ lesson.end }}</td>
+                    <td>{{ lesson.subject }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock %}
