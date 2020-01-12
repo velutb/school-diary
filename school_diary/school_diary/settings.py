@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'timetable',
     'crispy_forms',
     'minimum',
+    'diary',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
