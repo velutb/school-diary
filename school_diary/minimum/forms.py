@@ -13,9 +13,6 @@ class GetMinimumForm(forms.Form):
         (8, "Экономика"),
         (9, "Физика")])
     grade = forms.ChoiceField(label="Класс:", choices=[
-        (1, 1),
-        (2, 2),
-        (3, 3),
         (4, 4),
         (5, 5),
         (6, 6),
