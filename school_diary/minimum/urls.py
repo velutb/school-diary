@@ -3,5 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.common_min, name='min'),
+    path('', views.minimum, name='minimum'),
+    path('list/', views.minimum_download, name='minimum_download'),
 ]

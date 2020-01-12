@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+<title>Минимум</title>
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="card my-5">
+        <div class="card-body">
+        <h5 class="card-title">Скачать минимум</h5>
+        <form method="POST" class="my-5 mx-5">
+            <div class="form-group">
+            {% csrf_token %}
+            {{ form|crispy }}
+            </div>
+            <button type="submit" class="btn btn-primary">Скачать</button>
+        </form>
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}
