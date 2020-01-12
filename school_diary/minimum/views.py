@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import GetMinimumForm
 from django.http import HttpResponse
 
+
 def minimum(request):
     if request.method == 'POST':
         form = GetMinimumForm(request.POST)
