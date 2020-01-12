@@ -11,3 +11,10 @@ def social(request):
 
 def get_help(request):
     return render(request, 'help.html')
+
+def error404(request):
+    return render(request, 'error.html', {
+        'error': "404", 
+        'title': "Файл не найден.", 
+        "description": "Мы не можем найти файл, который вы ищите."
+        })

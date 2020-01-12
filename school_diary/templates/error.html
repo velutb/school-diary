@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{ load static }
+
+{% block title %}
+<title>404 Not Found</title>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:600,900&display=swap');
+
+    #code{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 900;
+        font-size: 160px;
+        margin: 0;
+        letter-spacing: 15px;
+        background-image: linear-gradient(125deg,#0246ff,#00f7f7);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+    }
+
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container my-5 text-center">
+    <div class="error">
+        <h1 class="dispay-4" id="title">{{ title }}</h1>
+        <h1 id="code">{{ error }}</h1>
+        <p>{{ description }}</p>
+    </div>
+    <a class="btn btn-primary" href="/">Домашняя страница</a>
+</div>
+{% endblock %}

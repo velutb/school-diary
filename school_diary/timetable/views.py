@@ -26,8 +26,12 @@ def timetable(request):
                     'thursday': lessons_list_thursday,
                     'friday': lessons_list_friday,
                     'saturday': lessons_list_saturday})
-            except Exception as message:
-                return HttpResponse("Ваш класс не найден в базе данных. Ошибка: %s" % message)
+            except Exception:
+                return render(request, 'error.html', {
+                    'error': "404", 
+                    'title': "Расписание не найдено", 
+                    "description": "Ваш класс отсутствует в базе данных."
+                })
     else:
         form = GetTimeTableForm()
     return render(request, 'timetable.html', {'form': form})
