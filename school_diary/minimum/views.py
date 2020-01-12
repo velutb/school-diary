@@ -9,7 +9,7 @@ def minimum(request):
             chosen_grade = form.cleaned_data['grade']
             chosen_subject = form.cleaned_data['subject']
             chosen_quater = form.cleaned_data['quater']
-            filename = str(chosen_subject) + str(chosen_grade) + str(chosen_quater) + ".pdf"
+            filename = str(chosen_subject) + str(chosen_grade) + str(chosen_quater) + ".doc"
             return render(request, 'minimum_download.html', {'filename': filename})
     else:
         form = GetMinimumForm()
