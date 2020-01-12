@@ -15,3 +15,12 @@
 
 ## Notes
 - Please follow the rules to make project editing available both on Linux & Windows!
+
+## HTML files names
+base.html - base layout with navbar and footer
+help.html - how to use the website
+homepage.html - homepage
+social.html - social pages of the school
+timetable.html - page with form to get timetable or download it
+timetable_list.html - where tables with timetable are printed
+timetable_download.html - where users can download timetable in PDF

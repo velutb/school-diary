@@ -7,3 +7,7 @@ def homepage(request):
 
 def social(request):
     return render(request, 'social.html')
+
+
+def get_help(request):
+    return render(request, 'help.html')
