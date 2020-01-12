@@ -14,23 +14,23 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="{% url 'homepage' %}">
+      <a class="navbar-brand" href="/">
         <img src="{% static 'bober.png' %}" width="40" height="40" class="d-inline-block align-center" alt="">
         Гимназия 56
       </a>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'timetable' %}">Расписание</a>
+            <a class="nav-link" href="/timetable">Расписание</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Дневник</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Минимум</a>
+            <a class="nav-link" href="/minimum">Минимум</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'help' %}" tabindex="-1" aria-disabled="true">Помощь</a>
+            <a class="nav-link" href="/help" tabindex="-1" aria-disabled="true">Помощь</a>
           </li>
         </ul>
       </div>
@@ -50,10 +50,10 @@
     <div>
       <div class="row">
         <div class="col-md-6">
-          <a href="{% url 'homepage' %}" class="text-decoration-none">Домашняя страница</a>
+          <a href="/" class="text-decoration-none">Домашняя страница</a>
         </div>
         <div class="col-md-6">
-          <a href="{% url 'timetable' %}" class="text-decoration-none">Расписание</a>
+          <a href="/timetable" class="text-decoration-none">Расписание</a>
         </div>
       </div>
       <div class="row">
@@ -61,7 +61,7 @@
           <a href="#" class="text-decoration-none">Дневник</a>
         </div>
         <div class="col-md-6">
-          <a href="#" class="text-decoration-none">Образовательный минимум</a>
+          <a href="/minimum" class="text-decoration-none">Образовательный минимум</a>
         </div>
       </div>
       <div class="row">
