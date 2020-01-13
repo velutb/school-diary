@@ -40,7 +40,6 @@ GRADES = [
 class Grades(models.Model):
     number = models.IntegerField(choices=GRADES, verbose_name="Класс")
     letter = models.CharField(max_length=1, choices=LITERAS, verbose_name="Литера")
-    masterteacher = models.CharField(max_length=80, verbose_name="Классный руководитель")
 
     class Meta:
         ordering = ['number', 'letter']

@@ -44,7 +44,25 @@ INSTALLED_APPS = [
     'diary',
 ]
 
+"""
+APPS:
+main - returns general webpages like homepage, about, social, etc.
+
+timetable - uses database; using this app students can download .pdf
+timetable or fill in the form and get it online from the database.
+
+minimum - using this app students can download .doc files with theory
+studied.
+
+diary [NOT ACTIVATED] - using this app students can get their marks, homework,
+personal statistics, etc.
+[TO ACTIVATE] 
+- Go to ./urls.py and uncomment 9th line
+- Add needed links to homepage.html and base.html
+"""
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+"""Lets Django to style created forms with bootstrap 4"""
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -126,10 +144,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 STATICFILES_DIRS = [
 os.path.join(BASE_DIR, "static"),
 ]
 
+
 MEDIA_URL = '/media/'
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
