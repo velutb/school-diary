@@ -48,7 +48,7 @@ class Teachers(models.Model):
 class Grades(models.Model):
     number = models.IntegerField(choices=GRADES)
     letter = models.CharField(max_length=2)
-    main_teacher = models.ForeignKey(Teachers, on_delete=models.SET_NULL)
+    main_teacher = models.ForeignKey(Teachers, null=True, on_delete=models.SET_NULL)
 
     class Meta:
         ordering = ['number', 'letter']
