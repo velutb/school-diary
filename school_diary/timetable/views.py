@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from urllib.parse import urlparse
 from .forms import GetTimeTableForm
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import Grades, Lessons 
 
 
@@ -13,7 +14,7 @@ def timetable(request):
             return output(request, chosen_grade, chosen_litera)
     else:
         form = GetTimeTableForm()
-    return render(request, 'timetable.html', {'form': form})
+        return render(request, 'timetable.html', {'form': form})
 
 
 def output(request, grade, litera):
