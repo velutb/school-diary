@@ -4,8 +4,11 @@
 - Python3.7+
 
 ## Modules:
-- Django (python3.* -m pip install django)
-- Django Crispy Forms (python3.* -m pip install django-crispy-forms)
+- Django==3.0.2
+- django-admin-tools==0.8.1
+- django-crispy-forms==1.8.1
+- Pillow==7.0.0
+- pytz==2019.3
 
 ## Namespaces
 ### Project name
