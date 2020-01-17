@@ -3,7 +3,9 @@ from .forms import GetTimeTableForm
 from django.http import HttpResponse
 from .models import Grades, Lessons 
 
-def timetable(request):
+
+
+def timetable(request, num, letter):
     if request.method == 'POST':
         form = GetTimeTableForm(request.POST)
         if form.is_valid():
