@@ -1,5 +1,12 @@
 # School Diary
 
+## How to run the project?
+- Download it and open in command line
+- pip3 install -r requierements.txt
+- python manage.py makemigrations
+- python manage.py migrate
+- python manage.py runserver
+
 ## Programming language
 - Python3.7+
 
