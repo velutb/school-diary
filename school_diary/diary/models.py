@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import date
 
+
 GRADES = [
     (1, 1),
     (2, 2),
@@ -93,11 +94,23 @@ class HomeTasks(models.Model):
         return "Д/з на " + str(self.date_to_make)
 
 
+class Weights(models.Model):
+    name = models.CharField(max_length=100)
+    short_name = models.CharField(max_length=10)
+    multiple = models.FloatField()
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return str(self.name)
+
+
 class Marks(models.Model):
     subject = models.ForeignKey(Subjects, on_delete=models.CASCADE)
     mark = models.IntegerField()
     data = models.DateField(auto_now_add=True)
-    weight = models.FloatField()
+    weight = models.ForeignKey(Weights, on_delete=models.CASCADE)
     student = models.ForeignKey(Students, on_delete=models.CASCADE)
     comment = models.CharField(max_length=50)
 
