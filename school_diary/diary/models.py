@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import date
 
+
 GRADES = [
     (1, 1),
     (2, 2),
@@ -78,10 +79,11 @@ class Students(models.Model):
 
 class HomeTasks(models.Model):
     grade = models.ForeignKey(Grades, on_delete=models.CASCADE)
-    subject = models.CharField(max_length=50)
+    subject = models.ForeignKey(Subjects, on_delete=models.CASCADE)
     description = models.CharField(max_length=1000)
     creation_date = models.DateField(verbose_name="Когда задано:", default=date.today)
     day_to_make = models.DateField(verbose_name="На какой день задано:")
+    data = models.DateField(auto_now_add=True)
 
     class Meta:
         ordering = ['day_to_make']
@@ -92,5 +94,30 @@ class HomeTasks(models.Model):
         return "Д/з на " + str(self.date_to_make)
 
 
+class Weights(models.Model):
+    name = models.CharField(max_length=100)
+    short_name = models.CharField(max_length=10)
+    multiple = models.FloatField()
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return str(self.name)
+
+
 class Marks(models.Model):
-    pass
+    subject = models.ForeignKey(Subjects, on_delete=models.CASCADE)
+    mark = models.IntegerField()
+    data = models.DateField(auto_now_add=True)
+    weight = models.ForeignKey(Weights, on_delete=models.CASCADE)
+    student = models.ForeignKey(Students, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=50)
+
+    class Meta:
+        ordering = ['data']
+        verbose_name = "Оценка"
+        verbose_name_plural = "Оценки"
+
+    def __str__(self):
+        return "Оценка {} по предмету {}".format(self.mark, self.subject)
