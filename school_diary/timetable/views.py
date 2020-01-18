@@ -1,8 +1,19 @@
 from django.shortcuts import render
-from urllib.parse import urlparse
+from urllib.parse import unquote
 from .forms import GetTimeTableForm
-from django.http import HttpResponse, HttpResponseRedirect
-from .models import Grades, Lessons 
+from django.http import HttpResponseRedirect
+from .models import Grades, Lessons
+import time
+
+
+DAYWEEK_NAMES = {
+    1:"Понедельник",
+    2:"Вторник",
+    3:"Среда",
+    4:"Четверг",
+    5:"Пятница",
+    6:"Суббота"
+}
 
 
 def timetable(request):
@@ -11,18 +22,27 @@ def timetable(request):
         if form.is_valid():
             chosen_grade = form.cleaned_data['grade']
             chosen_litera = form.cleaned_data['litera']
-            return output(request, chosen_grade, chosen_litera)
+            url = str(chosen_grade) + '/' + chosen_litera
+            url = unquote(url)
+            return HttpResponseRedirect(url)
     else:
         form = GetTimeTableForm()
         return render(request, 'timetable.html', {'form': form})
 
 
 def output(request, grade, litera):
+    CURRENT_DAY = time.localtime().tm_wday + 1
+    current_day_name = DAYWEEK_NAMES[CURRENT_DAY]
+    if CURRENT_DAY != 6: next_day_name = DAYWEEK_NAMES[(CURRENT_DAY + 1) % 7]
     try:
-        class_number = grade
+        class_number = int(grade)
         class_letter = litera
         my_class = str(class_number) + class_letter
         my_grade = Grades.objects.get(number=class_number, letter=class_letter)
+        if CURRENT_DAY != 7: lessons_list_today = Lessons.objects.filter(connection=my_grade.id, day=current_day_name)
+        else: lessons_list_today = []
+        if CURRENT_DAY != 6: lessons_list_tomorrow = Lessons.objects.filter(connection=my_grade.id, day=next_day_name)
+        else: lessons_list_tomorrow = []
         lessons_list_monday = Lessons.objects.filter(connection=my_grade.id, day="Понедельник")
         lessons_list_tuesday = Lessons.objects.filter(connection=my_grade.id, day="Вторник")
         lessons_list_wednesday = Lessons.objects.filter(connection=my_grade.id, day="Среда")
@@ -30,6 +50,9 @@ def output(request, grade, litera):
         lessons_list_friday = Lessons.objects.filter(connection=my_grade.id, day="Пятница")
         lessons_list_saturday = Lessons.objects.filter(connection=my_grade.id, day="Суббота")
         return render(request, 'timetable_list.html', {
+            'current_weekday': current_day_name,
+            'today': lessons_list_today,
+            'tomorrow': lessons_list_tomorrow,
             'my_grade': my_class,
             'monday': lessons_list_monday,
             'tuesday': lessons_list_tuesday,

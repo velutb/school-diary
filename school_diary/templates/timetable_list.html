@@ -7,193 +7,261 @@
 
 {% block content %}
 <div class="container my-5">
-    <p>Показано расписание для класса: {{ my_grade }}</p>
+    <div class="alert alert-info" role="alert">
+        Показано расписание для класса: {{ my_grade }}
+    </div>
+
+    {% if today %}
+    <div class="card my-5">
+        <div class="card-body">
+            <div class="card-title">
+                <h5>Расписание на сегодня</h5>
+            </div>
+            <div class="table-responsive-md">
+                <table class="table">
+                    <tr>
+                        <th>Номер</th>
+                        <th>Предмет</th>
+                        <th>Кабинет</th>
+                        <th>Начало</th>
+                        <th>Конец</th>
+                    </tr>
+                    {% for lesson in today %}
+                    <tr>
+                        <td>{{ lesson.number }}</td>
+                        <td>{{ lesson.subject }}</td>
+                        <td>{{ lesson.classroom }}</td>
+                        <td>{{ lesson.start }}</td>
+                        <td>{{ lesson.end }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
+    {% if tomorrow %}
+    <div class="card my-5">
+        <div class="card-body">
+            <div class="card-title">
+                <h5>Расписание на завтра</h5>
+            </div>
+            <div class="table-responsive-md">
+                <table class="table">
+                    <tr>
+                        <th>Номер</th>
+                        <th>Предмет</th>
+                        <th>Кабинет</th>
+                        <th>Начало</th>
+                        <th>Конец</th>
+                    </tr>
+                    {% for lesson in tomorrow %}
+                    <tr>
+                        <td>{{ lesson.number }}</td>
+                        <td>{{ lesson.subject }}</td>
+                        <td>{{ lesson.classroom }}</td>
+                        <td>{{ lesson.start }}</td>
+                        <td>{{ lesson.end }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
     <div class="card my-5">
         <div class="card-body">
             <div class="card-title">
                 <h5>Понедельник</h5>
             </div>
-            {% if monday.count > 0 %}
+            {% if monday %}
             <div class="table-responsive-md">
-            <table class="table">
-                <tr>
-                    <th>Номер</th>
-                    <th>Предмет</th>
-                    <th>Кабинет</th>
-                    <th>Начало</th>
-                    <th>Конец</th>
-                </tr>
-                {% for lesson in monday %}
-                <tr>
-                    <td>{{ lesson.number }}</td>
-                    <td>{{ lesson.subject }}</td>
-                    <td>{{ lesson.classroom }}</td>
-                    <td>{{ lesson.start }}</td>
-                    <td>{{ lesson.end }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+                <table class="table">
+                    <tr>
+                        <th>Номер</th>
+                        <th>Предмет</th>
+                        <th>Кабинет</th>
+                        <th>Начало</th>
+                        <th>Конец</th>
+                    </tr>
+                    {% for lesson in monday %}
+                    <tr>
+                        <td>{{ lesson.number }}</td>
+                        <td>{{ lesson.subject }}</td>
+                        <td>{{ lesson.classroom }}</td>
+                        <td>{{ lesson.start }}</td>
+                        <td>{{ lesson.end }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
             </div>
             {% else %}
                 <p>Расписание на этот день пока не добавлено администраторами.</p>
             {% endif %}
         </div>
     </div>
+
     <div class="card my-5">
         <div class="card-body">
             <div class="card-title">
                 <h5>Вторник</h5>
             </div>
-            {% if tuesday.count > 0 %}
+            {% if tuesday %}
             <div class="table-responsive-md">
-            <table class="table">
-                <tr>
-                    <th>Номер</th>
-                    <th>Предмет</th>
-                    <th>Кабинет</th>
-                    <th>Начало</th>
-                    <th>Конец</th>
-                </tr>
-                {% for lesson in tuesday %}
-                <tr>
-                    <td>{{ lesson.number }}</td>
-                    <td>{{ lesson.subject }}</td>
-                    <td>{{ lesson.classroom }}</td>
-                    <td>{{ lesson.start }}</td>
-                    <td>{{ lesson.end }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+                <table class="table">
+                    <tr>
+                        <th>Номер</th>
+                        <th>Предмет</th>
+                        <th>Кабинет</th>
+                        <th>Начало</th>
+                        <th>Конец</th>
+                    </tr>
+                    {% for lesson in tuesday %}
+                    <tr>
+                        <td>{{ lesson.number }}</td>
+                        <td>{{ lesson.subject }}</td>
+                        <td>{{ lesson.classroom }}</td>
+                        <td>{{ lesson.start }}</td>
+                        <td>{{ lesson.end }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
             </div>
             {% else %}
                 <p>Расписание на этот день пока не добавлено администраторами.</p>
             {% endif %}
         </div>
     </div>
+    
     <div class="card my-5">
         <div class="card-body">
             <div class="card-title">
                 <h5>Среда</h5>
             </div>
-            {% if wednesday.count > 0 %}
+            {% if wednesday %}
             <div class="table-responsive-md">
-            <table class="table">
-                <tr>
-                    <th>Номер</th>
-                    <th>Предмет</th>
-                    <th>Кабинет</th>
-                    <th>Начало</th>
-                    <th>Конец</th>
-                </tr>
-                {% for lesson in wednesday %}
-                <tr>
-                    <td>{{ lesson.number }}</td>
-                    <td>{{ lesson.subject }}</td>
-                    <td>{{ lesson.classroom }}</td>
-                    <td>{{ lesson.start }}</td>
-                    <td>{{ lesson.end }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+                <table class="table">
+                    <tr>
+                        <th>Номер</th>
+                        <th>Предмет</th>
+                        <th>Кабинет</th>
+                        <th>Начало</th>
+                        <th>Конец</th>
+                    </tr>
+                    {% for lesson in wednesday %}
+                    <tr>
+                        <td>{{ lesson.number }}</td>
+                        <td>{{ lesson.subject }}</td>
+                        <td>{{ lesson.classroom }}</td>
+                        <td>{{ lesson.start }}</td>
+                        <td>{{ lesson.end }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
             </div>
             {% else %}
                 <p>Расписание на этот день пока не добавлено администраторами.</p>
             {% endif %}
         </div>
     </div>
+    
     <div class="card my-5">
         <div class="card-body">
             <div class="card-title">
                 <h5>Четверг</h5>
             </div>
-            {% if thursday.count > 0 %}
+            {% if thursday %}
             <div class="table-responsive-md">
-            <table class="table">
-                <tr>
-                    <th>Номер</th>
-                    <th>Предмет</th>
-                    <th>Кабинет</th>
-                    <th>Начало</th>
-                    <th>Конец</th>
-                </tr>
-                {% for lesson in thursday %}
-                <tr>
-                    <td>{{ lesson.number }}</td>
-                    <td>{{ lesson.subject }}</td>
-                    <td>{{ lesson.classroom }}</td>
-                    <td>{{ lesson.start }}</td>
-                    <td>{{ lesson.end }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+                <table class="table">
+                    <tr>
+                        <th>Номер</th>
+                        <th>Предмет</th>
+                        <th>Кабинет</th>
+                        <th>Начало</th>
+                        <th>Конец</th>
+                    </tr>
+                    {% for lesson in thursday %}
+                    <tr>
+                        <td>{{ lesson.number }}</td>
+                        <td>{{ lesson.subject }}</td>
+                        <td>{{ lesson.classroom }}</td>
+                        <td>{{ lesson.start }}</td>
+                        <td>{{ lesson.end }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
             </div>
             {% else %}
                 <p>Расписание на этот день пока не добавлено администраторами.</p>
             {% endif %}
         </div>
     </div>
+
     <div class="card my-5">
         <div class="card-body">
             <div class="card-title">
                 <h5>Пятница</h5>
             </div>
-            {% if friday.count > 0 %}
+            {% if friday %}
             <div class="table-responsive-md">
-            <table class="table">
-                <tr>
-                    <th>Номер</th>
-                    <th>Предмет</th>
-                    <th>Кабинет</th>
-                    <th>Начало</th>
-                    <th>Конец</th>
-                </tr>
-                {% for lesson in friday %}
-                <tr>
-                    <td>{{ lesson.number }}</td>
-                    <td>{{ lesson.subject }}</td>
-                    <td>{{ lesson.classroom }}</td>
-                    <td>{{ lesson.start }}</td>
-                    <td>{{ lesson.end }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+                <table class="table">
+                    <tr>
+                        <th>Номер</th>
+                        <th>Предмет</th>
+                        <th>Кабинет</th>
+                        <th>Начало</th>
+                        <th>Конец</th>
+                    </tr>
+                    {% for lesson in friday %}
+                    <tr>
+                        <td>{{ lesson.number }}</td>
+                        <td>{{ lesson.subject }}</td>
+                        <td>{{ lesson.classroom }}</td>
+                        <td>{{ lesson.start }}</td>
+                        <td>{{ lesson.end }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
             </div>
             {% else %}
                 <p>Расписание на этот день пока не добавлено администраторами.</p>
             {% endif %}
         </div>
     </div>
+
     <div class="card my-5">
         <div class="card-body">
             <div class="card-title">
                 <h5>Суббота</h5>
             </div>
-            {% if saturday.count > 0 %}
+            {% if saturday %}
             <div class="table-responsive-md">
-            <table class="table">
-                <tr>
-                    <th>Номер</th>
-                    <th>Предмет</th>
-                    <th>Кабинет</th>
-                    <th>Начало</th>
-                    <th>Конец</th>
-                </tr>
-                {% for lesson in saturday %}
-                <tr>
-                    <td>{{ lesson.number }}</td>
-                    <td>{{ lesson.subject }}</td>
-                    <td>{{ lesson.classroom }}</td>
-                    <td>{{ lesson.start }}</td>
-                    <td>{{ lesson.end }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+                <table class="table">
+                    <tr>
+                        <th>Номер</th>
+                        <th>Предмет</th>
+                        <th>Кабинет</th>
+                        <th>Начало</th>
+                        <th>Конец</th>
+                    </tr>
+                    {% for lesson in saturday %}
+                    <tr>
+                        <td>{{ lesson.number }}</td>
+                        <td>{{ lesson.subject }}</td>
+                        <td>{{ lesson.classroom }}</td>
+                        <td>{{ lesson.start }}</td>
+                        <td>{{ lesson.end }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
             </div>
             {% else %}
                 <p>Расписание на этот день пока не добавлено администраторами.</p>
             {% endif %}
         </div>
     </div>
+
 </div>
-    
 {% endblock %}
