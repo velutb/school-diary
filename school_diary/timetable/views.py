@@ -12,7 +12,8 @@ DAYWEEK_NAMES = {
     3:"Среда",
     4:"Четверг",
     5:"Пятница",
-    6:"Суббота"
+    6:"Суббота",
+    7:"Воскресенье"
 }
 
 
@@ -33,7 +34,7 @@ def timetable(request):
 def output(request, grade, litera):
     CURRENT_DAY = time.localtime().tm_wday + 1
     current_day_name = DAYWEEK_NAMES[CURRENT_DAY]
-    if CURRENT_DAY != 6: next_day_name = DAYWEEK_NAMES[(CURRENT_DAY + 1) % 7]
+    next_day_name = DAYWEEK_NAMES[(CURRENT_DAY + 1) % 7]
     try:
         class_number = int(grade)
         class_letter = litera
@@ -60,11 +61,11 @@ def output(request, grade, litera):
             'thursday': lessons_list_thursday,
             'friday': lessons_list_friday,
             'saturday': lessons_list_saturday})
-    except Exception:
+    except Exception as error:
         return render(request, 'error.html', {
             'error': "404", 
             'title': "Расписание не найдено", 
-            "description": "Ваш класс отсутствует в базе данных."
+            "description": error
         })
 
 
