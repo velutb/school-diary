@@ -17,6 +17,15 @@ GRADES = [
 ]
 
 
+WEIGHTS = [
+    (5, "5 - отлично"),
+    (4, "4 - хорошо"),
+    (3, "3 - удовлетворительно"),
+    (2, "2 - плохо"),
+    (1, "1 - ужасно")
+]
+
+
 class Subjects(models.Model):
     name = models.CharField(max_length=50)
 
@@ -81,9 +90,8 @@ class HomeTasks(models.Model):
     grade = models.ForeignKey(Grades, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subjects, on_delete=models.CASCADE)
     description = models.CharField(max_length=1000)
-    creation_date = models.DateField(verbose_name="Когда задано:", default=date.today)
-    day_to_make = models.DateField(verbose_name="На какой день задано:")
-    data = models.DateField(auto_now_add=True)
+    creation_date = models.DateField(verbose_name="Когда задано", default=date.today)
+    day_to_make = models.DateField(verbose_name="На какой день задано")
 
     class Meta:
         ordering = ['day_to_make']
@@ -94,30 +102,18 @@ class HomeTasks(models.Model):
         return "Д/з на " + str(self.date_to_make)
 
 
-class Weights(models.Model):
-    name = models.CharField(max_length=100)
-    short_name = models.CharField(max_length=10)
-    multiple = models.FloatField()
-
-    class Meta:
-        ordering = ['name']
-
-    def __str__(self):
-        return str(self.name)
-
-
 class Marks(models.Model):
-    subject = models.ForeignKey(Subjects, on_delete=models.CASCADE)
-    mark = models.IntegerField()
-    data = models.DateField(auto_now_add=True)
-    weight = models.ForeignKey(Weights, on_delete=models.CASCADE)
-    student = models.ForeignKey(Students, on_delete=models.CASCADE)
-    comment = models.CharField(max_length=50)
+    subject = models.ForeignKey(Subjects, on_delete=models.CASCADE, verbose_name="Предмет")
+    creation_date = models.DateField(default=date.today, verbose_name="Дата")
+    weight = models.IntegerField(choices=WEIGHTS, verbose_name="Вес оценки")
+    student = models.ForeignKey(Students, on_delete=models.CASCADE, verbose_name="Ученик")
+    grade = models.ForeignKey(Grades, on_delete=models.CASCADE, verbose_name="Класс")
+    comment = models.CharField(max_length=150, verbose_name="Комментарий", blank=True)
 
     class Meta:
-        ordering = ['data']
+        ordering = ['creation_date']
         verbose_name = "Оценка"
         verbose_name_plural = "Оценки"
 
     def __str__(self):
-        return "Оценка {} по предмету {}".format(self.mark, self.subject)
+        return "{}: оценка {} за {}".format(self.student, self.mark, self.creation_date)
