@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>{{ post.title }}</title>
+<style>
+    .post-image{
+        object-fit: scale-down;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container my-5  w-75">
+    <div class="card text-center">
+        {% if post.image %}
+        <img class="card-img-top post-image" src="{{ post.image.url }}" alt="Изображение">
+        {% endif %}
+        <div class="card-body">
+            <div class="card-title">
+                <h1 class="dispay-4">{{ post.title }}</h1>
+                <p class="text-muted">{{ post.publication_date }}</p>
+                {% autoescape off %}
+                <p class="text-left">{{ post.content }}</p>
+                {% endautoescape %}
+            </div>
+        </div>
+    </div>
+    <p class="my-5 text-muted">Спасибо, что прочитали эту запись. <a class="text-decoration-none" href="/news/1">Перейти к други новостям.</a></p>
+</div>
+{% endblock %}

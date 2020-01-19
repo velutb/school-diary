@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     'main',
     'timetable.apps.TimetableConfig',
     'crispy_forms',
-    'minimum',
+    'minimum.apps.MinimumConfig',
     'diary',
+    'news.apps.NewsConfig',
     'django_cleanup',
 ]
 
@@ -131,7 +132,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 

@@ -10,61 +10,55 @@
     <div class="row my-5">
         <div class="col-md-4 col-sm-6 my-3">
             <div class="card h-100">
-                <img src="{% static 'diary.png' %}" class="card-img-top" alt="Дневник">
+                <a href="#"><img src="{% static 'diary.png' %}" class="card-img-top" alt="Дневник"></a>
                 <div class="card-body">
                     <h5 class="card-title">Дневник</h5>
                     <p class="card-text text-muted">Просматривайте свои оценки, успеваемость и домашнее задание.</p>
-                    <a href="#" class="btn btn-primary">Перейти</a>
                   </div>
             </div>
         </div>
         <div class="col-md-4 col-sm-6 my-3">
             <div class="card h-100">
-                <img src="{% static 'timetable.png' %}" class="card-img-top" alt="Расписание">
+                <a href="/timetable"><img src="{% static 'timetable.png' %}" class="card-img-top" alt="Расписание"></a>
                 <div class="card-body">
                     <h5 class="card-title">Расписание</h5>
                     <p class="card-text text-muted">Расписание вашего учебного дня с учетом последних изменений.</p>
-                    <a href="{% url 'timetable' %}" class="btn btn-primary">Перейти</a>
                   </div>
             </div>
         </div>
         <div class="col-md-4 col-sm-6 my-3">
             <div class="card h-100">
-                <img src="{% static 'minimum.png' %}" class="card-img-top" alt="Минимум">
+                <a href="/minimum"><img src="{% static 'minimum.png' %}" class="card-img-top" alt="Минимум"></a>
                 <div class="card-body">
                     <h5 class="card-title">Минимум</h5>
                     <p class="card-text text-muted">Образовательный минимум по всем предметам.</p>
-                    <a href="{% url 'minimum' %}" class="btn btn-primary">Перейти</a>
                   </div>
             </div>
         </div>
         <div class="col-md-4 col-sm-6 my-3">
             <div class="card h-100">
-                <img src="{% static 'news.png' %}" class="card-img-top" alt="Дневник">
+                <a href="/news"><img src="{% static 'news.png' %}" class="card-img-top" alt="Новости"></a>
                 <div class="card-body">
                     <h5 class="card-title">Новости</h5>
                     <p class="card-text text-muted">Следите за последними событиями, происходящими в гимназии.</p>
-                    <a href="#" class="btn btn-primary">Перейти</a>
                   </div>
             </div>
         </div>
         <div class="col-md-4 col-sm-6 my-3">
             <div class="card h-100">
-                <img src="{% static 'info.png' %}" class="card-img-top" alt="Дневник">
+                <a href="#"><img src="{% static 'info.png' %}" class="card-img-top" alt="О проекте"></a>
                 <div class="card-body">
                     <h5 class="card-title">О проекте</h5>
                     <p class="card-text text-muted">Все об этой версии электронного дневника и ее разработчиках.</p>
-                    <a href="#" class="btn btn-primary">Перейти</a>
                   </div>
             </div>
         </div>
         <div class="col-md-4 col-sm-6 my-3">
             <div class="card h-100">
-                <img src="{% static 'social.png' %}" class="card-img-top" alt="Дневник">
+                <a href="/social"><img src="{% static 'social.png' %}" class="card-img-top" alt="Дневник"></a>
                 <div class="card-body">
                     <h5 class="card-title">Гимназия в соцсетях</h5>
                     <p class="card-text text-muted">Наши страницы в ВК, Instagram и канал на YouTube.</p>
-                    <a href="{% url 'social' %}" class="btn btn-primary">Перейти</a>
                   </div>
             </div>
         </div>
