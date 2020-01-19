@@ -65,7 +65,7 @@ def output(request, grade, litera):
         return render(request, 'error.html', {
             'error': "404", 
             'title': "Расписание не найдено", 
-            "description": error
+            "description": "Класс отсутствует а базе данных. Попросите администратора добавить ваш класс."
         })
 
 
