@@ -17,6 +17,18 @@ GRADES = [
 ]
 
 
+LITERAS = [
+    ("А", "А"),
+    ("Б", "Б"),
+    ("В", "В"),
+    ("Г", "Г"),
+    ("Д", "Д"),
+    ("Е", "Е"),
+    ("Ж", "Ж"),
+    ("З", "З")
+]
+
+
 WEIGHTS = [
     (5, "5 - отлично"),
     (4, "4 - хорошо"),
@@ -27,7 +39,7 @@ WEIGHTS = [
 
 
 class Subjects(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, verbose_name="Название")
 
     class Meta:
         ordering = ['name']
@@ -39,12 +51,12 @@ class Subjects(models.Model):
 
 
 class Teachers(models.Model):
-    first_name = models.CharField(max_length=50)
-    second_name = models.CharField(max_length=50)
-    surname = models.CharField(max_length=50)
-    subjects = models.ManyToManyField(Subjects)
-    login = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
+    first_name = models.CharField(max_length=50, verbose_name="Имя")
+    surname = models.CharField(max_length=50, verbose_name="Фамилия")
+    second_name = models.CharField(max_length=50, verbose_name="Отчество", blank=True)
+    subjects = models.ManyToManyField(Subjects, verbose_name="Предметы")
+    login = models.CharField(max_length=50, verbose_name="Логин")
+    password = models.CharField(max_length=50, verbose_name="Пароль")
     
     class Meta:
         ordering = ['surname', 'first_name', 'second_name']
@@ -56,9 +68,9 @@ class Teachers(models.Model):
 
 
 class Grades(models.Model):
-    number = models.IntegerField(choices=GRADES)
-    letter = models.CharField(max_length=2)
-    main_teacher = models.ForeignKey(Teachers, null=True, on_delete=models.SET_NULL)
+    number = models.IntegerField(choices=GRADES, verbose_name="Класс")
+    letter = models.CharField(max_length=2, verbose_name="Буква")
+    main_teacher = models.ForeignKey(Teachers, null=True, on_delete=models.SET_NULL, verbose_name="Классный руководитель")
 
     class Meta:
         ordering = ['number', 'letter']
@@ -70,12 +82,12 @@ class Grades(models.Model):
 
 
 class Students(models.Model):
-    first_name = models.CharField(max_length=50)
-    second_name = models.CharField(max_length=50)
-    surname = models.CharField(max_length=50)
-    login = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
-    grade = models.ForeignKey(Grades, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=50, verbose_name="Имя")
+    surname = models.CharField(max_length=50, verbose_name="Фамилия")
+    second_name = models.CharField(max_length=50, verbose_name="Отчество", blank=True)
+    login = models.CharField(max_length=50, verbose_name="Логин")
+    password = models.CharField(max_length=50, verbose_name="Пароль")
+    grade = models.ForeignKey(Grades, on_delete=models.CASCADE, verbose_name="Класс")
 
     class Meta:
         ordering = ['surname', 'first_name', 'second_name']
@@ -87,9 +99,9 @@ class Students(models.Model):
 
 
 class HomeTasks(models.Model):
-    grade = models.ForeignKey(Grades, on_delete=models.CASCADE)
-    subject = models.ForeignKey(Subjects, on_delete=models.CASCADE)
-    description = models.CharField(max_length=1000)
+    grade = models.ForeignKey(Grades, on_delete=models.CASCADE, verbose_name="Класс")
+    subject = models.ForeignKey(Subjects, on_delete=models.CASCADE, verbose_name="Предмет")
+    description = models.CharField(max_length=1000, verbose_name="Описание домашнего задания")
     creation_date = models.DateField(verbose_name="Когда задано", default=date.today)
     day_to_make = models.DateField(verbose_name="На какой день задано")
 
