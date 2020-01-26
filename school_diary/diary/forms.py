@@ -3,9 +3,10 @@ from django import forms
 
 class StudentRegistration(forms.Form):
     email = forms.EmailField(max_length=50)
+    email_S = forms.EmailInput()
     first_name = forms.CharField(max_length=50)
-    surname = forms.CharField(max_length=50, verbose_name="Фамилия")
-    second_name = forms.CharField(max_length=50, verbose_name="Отчество", blank=True)
+    surname = forms.CharField(max_length=50)
+    name = forms.CharField(max_length=50)
     password = forms.PasswordInput()
     conform_password = forms.PasswordInput()
 
