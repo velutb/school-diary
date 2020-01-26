@@ -27,19 +27,19 @@ LITERAS = [
     ("З", "З")
 ]
 
-# Create your models here.
-class Grades(models.Model):
-    number = models.IntegerField(choices=GRADES, verbose_name="Класс")
-    letter = models.CharField(max_length=2, verbose_name="Буква")
-    main_teacher = models.ForeignKey(Teachers, null=True, on_delete=models.SET_NULL, verbose_name="Классный руководитель")
+class Subjects(models.Model):
+    name = models.CharField(max_length=50, verbose_name="Название")
 
     class Meta:
-        ordering = ['number', 'letter']
-        verbose_name = "Класс"
-        verbose_name_plural = "Классы"
+        ordering = ['name']
+        verbose_name = "Предмет"
+        verbose_name_plural = "Предметы"
 
     def __str__(self):
-        return str(self.number) + self.letter
+        return self.name
+
+# Create your models here.
+
 
 class Teachers(AbstractBaseUser):
     first_name = models.CharField(max_length=50, verbose_name="Имя")
@@ -56,6 +56,20 @@ class Teachers(AbstractBaseUser):
 
     def __str__(self):
         return '{} {} {} '.format(self.surname, self.first_name, self.second_name)
+
+
+class Grades(models.Model):
+    number = models.IntegerField(choices=GRADES, verbose_name="Класс")
+    letter = models.CharField(max_length=2, verbose_name="Буква")
+    main_teacher = models.ForeignKey(Teachers, null=True, on_delete=models.SET_NULL, verbose_name="Классный руководитель")
+
+    class Meta:
+        ordering = ['number', 'letter']
+        verbose_name = "Класс"
+        verbose_name_plural = "Классы"
+
+    def __str__(self):
+        return str(self.number) + self.letter
 
 
 class Students(AbstractBaseUser):
