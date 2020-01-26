@@ -2,12 +2,11 @@ from django import forms
 
 
 class StudentRegistration(forms.Form):
-    email = forms.EmailField(max_length=50)
-    first_name = forms.CharField(max_length=50)
-    surname = forms.CharField(max_length=50)
-    password = forms.CharField(widget=forms.PasswordInput)
-    conform_password = forms.CharField(widget=forms.PasswordInput)
-
+    email = forms.EmailField(label="Электронная почта: ", max_length=50)
+    first_name = forms.CharField(label="Имя: ", max_length=50)
+    surname = forms.CharField(label="Фамилия: ", max_length=50)
+    password = forms.CharField(label="Пароль: ", widget=forms.PasswordInput)
+    conform_password = forms.CharField(label="Подтверждение пароля: ", widget=forms.PasswordInput)
     grade = forms.ChoiceField(label="Класс:", choices=[
         (1, 1),
         (2, 2),
