@@ -8,17 +8,12 @@
 
 {% block content %}
     <div class="container my-5">
-        <p>Вы можете скачать расписание в формате PDF или просмотреть его онлайн, выбрав свой класс.</p>
-        <a class="btn btn-primary text-decoration-none" href="{% url 'timetable_download' %}">Скачать в формате PDF</a>
-        <div class="card my-5">
-            <div class="card-body">
-                <h5 class="card-title">Получить расписание</h5>
                 <form method="POST" class="my-5 mx-5">
                     <div class="form-group">
                         {% csrf_token %}
                         {{ form|crispy }}
                     </div>
-                    <button type="submit" class="btn btn-primary">Получить расписание</button>
+                    <button type="submit" class="btn btn-primary">Зарегестрироваться</button>
                 </form>
             </div>
         </div>
