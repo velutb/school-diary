@@ -57,7 +57,8 @@ class Teachers(AbstractBaseUser):
     second_name = models.CharField(max_length=50, verbose_name="Отчество", blank=True)
     subjects = models.ManyToManyField(Subjects, verbose_name="Предметы")
     password = models.CharField(max_length=50, verbose_name="Пароль")
-    email = models.CharField(max_length=50, verbose_name="Почта")
+    email = models.CharField(max_length=50, verbose_name="Почта", default='test')
+    USERNAME_FIELD = 'email'
 
     class Meta:
         ordering = ['surname', 'first_name', 'second_name']
@@ -88,7 +89,8 @@ class Students(AbstractBaseUser):
     second_name = models.CharField(max_length=50, verbose_name="Отчество", blank=True)
     password = models.CharField(max_length=50, verbose_name="Пароль")
     grade = models.ForeignKey(Grades, on_delete=models.CASCADE, verbose_name="Класс")
-    email = models.CharField(max_length=50, verbose_name="Почта")
+    email = models.CharField(max_length=50, verbose_name="Почта", default='test')
+    USERNAME_FIELD = 'email'
 
     class Meta:
         ordering = ['surname', 'first_name', 'second_name']
@@ -118,7 +120,7 @@ class HomeTasks(models.Model):
 class Marks(models.Model):
     subject = models.ForeignKey(Subjects, on_delete=models.CASCADE, verbose_name="Предмет")
     creation_date = models.DateField(default=date.today, verbose_name="Дата")
-    mark = models.IntegerField(choices=MARKS, verbose_name="оценка")
+    mark = models.IntegerField(choices=MARKS, verbose_name="оценка", default=5)
     student = models.ForeignKey(Students, on_delete=models.CASCADE, verbose_name="Ученик")
     grade = models.ForeignKey(Grades, on_delete=models.CASCADE, verbose_name="Класс")
     comment = models.CharField(max_length=150, verbose_name="Комментарий", blank=True)
@@ -136,7 +138,9 @@ class Administration(AbstractBaseUser):
     surname = models.CharField(max_length=50, verbose_name="Фамилия")
     second_name = models.CharField(max_length=50, verbose_name="Отчество", blank=True)
     password = models.CharField(max_length=50, verbose_name="Пароль")
-    email = models.CharField(max_length=50, verbose_name="Почта")
+    email = models.CharField(max_length=50, verbose_name="Почта", default='test')
+    USERNAME_FIELD = 'email'
+
 
     class Meta:
         ordering = ['surname', 'first_name', 'second_name']
