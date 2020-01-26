@@ -130,3 +130,18 @@ class Marks(models.Model):
 
     def __str__(self):
         return "{}: оценка {} за {}".format(self.student, self.mark, self.creation_date)
+
+class Administration(AbstractBaseUser):
+    first_name = models.CharField(max_length=50, verbose_name="Имя")
+    surname = models.CharField(max_length=50, verbose_name="Фамилия")
+    second_name = models.CharField(max_length=50, verbose_name="Отчество", blank=True)
+    password = models.CharField(max_length=50, verbose_name="Пароль")
+    email = models.CharField(max_length=50, verbose_name="Почта")
+
+    class Meta:
+        ordering = ['surname', 'first_name', 'second_name']
+        verbose_name = "администратор"
+        verbose_name_plural = "Учителя"
+
+    def __str__(self):
+        return '{} {} {}'.format(self.surname, self.first_name, self.second_name)
