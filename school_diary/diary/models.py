@@ -92,8 +92,8 @@ class Students(AbstractBaseUser):
 
     class Meta:
         ordering = ['surname', 'first_name', 'second_name']
-        verbose_name = "Учитель"
-        verbose_name_plural = "Учителя"
+        verbose_name = "Ученик"
+        verbose_name_plural = "Ученики"
 
     def __str__(self):
         return '{} {} {}'.format(self.surname, self.first_name, self.second_name)
@@ -141,7 +141,7 @@ class Administration(AbstractBaseUser):
     class Meta:
         ordering = ['surname', 'first_name', 'second_name']
         verbose_name = "администратор"
-        verbose_name_plural = "Учителя"
+        verbose_name_plural = "Администраторы"
 
     def __str__(self):
         return '{} {} {}'.format(self.surname, self.first_name, self.second_name)
