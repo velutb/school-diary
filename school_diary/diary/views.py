@@ -1,16 +1,14 @@
 from django.shortcuts import render
-from django.shortcuts import render, HttpResponse
-from urllib.parse import unquote
 from .forms import CustomStudentCreationForm
-from .models import Students
-from django.contrib.auth import authenticate
+from django.http import HttpResponseRedirect
 
 
 def index(request):
     if request.method == 'POST':
         form = CustomStudentCreationForm(request.POST)
         if form.is_valid():
-            return HttpResponse('da')
+            form.save()
+            return HttpResponseRedirect('/')  # TODO Доделать ридерект на главную страницу
         else:
             form = CustomStudentCreationForm()
             return render(request, 'registration.html', {'form': form, 'display': 'block'})
