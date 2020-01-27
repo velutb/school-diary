@@ -1,5 +1,6 @@
 from django import forms
-
+from django.contrib.auth.forms import UserCreationForm
+from .models import Students
 
 class StudentRegistration(forms.Form):
     email = forms.EmailField(label="Электронная почта: ", max_length=50)
@@ -28,3 +29,9 @@ class StudentRegistration(forms.Form):
         ("Е", "Е"),
         ("Ж", "Ж"),
         ("З", "З")])
+
+
+class CustomStudentCreationForm(UserCreationForm):
+    class Meta(UserCreationForm):
+        model = Students
+        fields = ('email', 'first_name', 'surname','second_name', 'grade')

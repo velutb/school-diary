@@ -1,4 +1,4 @@
-from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.db import models
 from datetime import date
 
@@ -60,6 +60,7 @@ class Teachers(AbstractBaseUser):
     email = models.EmailField(max_length=50, verbose_name="Почта", default='test')
     active = models.BooleanField(default=True)
     USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['email', 'password', 'first_name', 'surname', ]
 
     class Meta:
         ordering = ['surname', 'first_name', 'second_name']
@@ -93,6 +94,10 @@ class Students(AbstractBaseUser):
     email = models.EmailField(max_length=50, verbose_name="Почта", default='test', unique=True)
     active = models.BooleanField(default=True)
     USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['email', 'password', 'first_name', 'surname',  'grade']
+
+    def get_username(self):
+        return self.email
 
     class Meta:
         ordering = ['surname', 'first_name', 'second_name']
@@ -135,6 +140,7 @@ class Marks(models.Model):
     def __str__(self):
         return "{}: оценка {} за {}".format(self.student, self.mark, self.creation_date)
 
+
 class Administration(AbstractBaseUser):
     first_name = models.CharField(max_length=50, verbose_name="Имя")
     surname = models.CharField(max_length=50, verbose_name="Фамилия")
@@ -143,7 +149,11 @@ class Administration(AbstractBaseUser):
     email = models.EmailField(max_length=50, verbose_name="Почта", default='test')
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=True)
+    REQUIRED_FIELDS = ['email', 'password', 'first_name', 'surname', ]
     USERNAME_FIELD = 'email'
+
+    def get_username(self):
+        return self.email
 
 
     class Meta:
