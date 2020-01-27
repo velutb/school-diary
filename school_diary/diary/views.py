@@ -10,11 +10,11 @@ def index(request):
     if request.method == 'POST':
         form = StudentRegistration(request.POST)
         if form.is_valid():
-            # if user is None:
-            #     return HttpResponse('True')
-            # else:
-            #     return HttpResponse('False')
-            return HttpResponse(form.cleaned_data['email'])
+           try:
+               # user = Students.
+                return HttpResponse(form.cleaned_data['email'])
+           except:
+               pass
     else:
         form = StudentRegistration()
         return render(request, 'registration.html', {'form':form})

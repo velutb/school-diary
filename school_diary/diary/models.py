@@ -57,7 +57,8 @@ class Teachers(AbstractBaseUser):
     second_name = models.CharField(max_length=50, verbose_name="Отчество", blank=True)
     subjects = models.ManyToManyField(Subjects, verbose_name="Предметы")
     password = models.CharField(max_length=50, verbose_name="Пароль")
-    email = models.CharField(max_length=50, verbose_name="Почта", default='test')
+    email = models.EmailField(max_length=50, verbose_name="Почта", default='test')
+    active = models.BooleanField(default=True)
     USERNAME_FIELD = 'email'
 
     class Meta:
@@ -89,7 +90,8 @@ class Students(AbstractBaseUser):
     second_name = models.CharField(max_length=50, verbose_name="Отчество", blank=True)
     password = models.CharField(max_length=50, verbose_name="Пароль")
     grade = models.ForeignKey(Grades, on_delete=models.CASCADE, verbose_name="Класс")
-    email = models.CharField(max_length=50, verbose_name="Почта", default='test')
+    email = models.EmailField(max_length=50, verbose_name="Почта", default='test', unique=True)
+    active = models.BooleanField(default=True)
     USERNAME_FIELD = 'email'
 
     class Meta:
@@ -138,7 +140,9 @@ class Administration(AbstractBaseUser):
     surname = models.CharField(max_length=50, verbose_name="Фамилия")
     second_name = models.CharField(max_length=50, verbose_name="Отчество", blank=True)
     password = models.CharField(max_length=50, verbose_name="Пароль")
-    email = models.CharField(max_length=50, verbose_name="Почта", default='test')
+    email = models.EmailField(max_length=50, verbose_name="Почта", default='test')
+    active = models.BooleanField(default=True)
+    staff = models.BooleanField(default=True)
     USERNAME_FIELD = 'email'
 
 
