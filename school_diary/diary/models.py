@@ -55,6 +55,7 @@ class CustomUserManager(BaseUserManager):
         user.save()
         return user
 
+
 class Subjects(models.Model):
     name = models.CharField(max_length=50, verbose_name="Название")
 

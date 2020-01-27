@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import StudentCreationForm
+from .forms import StudentCreationForm, StudentsLogin
 from django.http import HttpResponseRedirect
 
 
@@ -19,13 +19,13 @@ def students_registration(request):
 
 def students_login(request):
     if request.method == 'POST':
-        form = StudentCreationForm(request.POST)
+        form = StudentsLogin(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/')
         else:
             form = StudentCreationForm()
-            return render(request, 'registration.html', {'form': form, 'display': 'block'})
+            return render(request, 'login.html', {'form': form, 'display': 'block'})
     else:
         form = StudentCreationForm()
-        return render(request, 'registration.html', {'form': form, 'display': 'none'})
+        return render(request, 'login.html', {'form': form,})
