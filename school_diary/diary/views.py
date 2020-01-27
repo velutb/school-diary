@@ -1,6 +1,7 @@
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render
 from .forms import StudentCreationForm, StudentsLogin
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 
 
 def students_registration(request):
@@ -21,11 +22,16 @@ def students_login(request):
     if request.method == 'POST':
         form = StudentsLogin(request.POST)
         if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/')
+            user = authenticate(username=form.cleaned_data['email'], password=form.cleaned_data['password'])
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect('/')
+            else:
+                return HttpResponse('not login')
         else:
-            form = StudentCreationForm()
-            return render(request, 'login.html', {'form': form, 'display': 'block'})
+            form = StudentsLogin()
+            # return render(request, 'login.html', {'form': form, 'display': 'block'})
+            return HttpResponse('fail')
     else:
-        form = StudentCreationForm()
-        return render(request, 'login.html', {'form': form,})
+        form = StudentsLogin()
+        return render(request, 'login.html', {'form': form})
