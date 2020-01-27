@@ -8,15 +8,18 @@
 
 {% block content %}
     <div class="container my-5">
-                <form method="POST" class="my-5 mx-5">
-                    <div class="form-group">
-                        {% csrf_token %}
-                        {{ form|crispy }}
-                    </div>
-                    <button type="submit" class="btn btn-primary">Зарегестрироваться</button>
-                </form>
-            </div>
+        <div class="alert alert-danger" role="alert" style="display: {{ display }}">
+            Такой пользователь уже существует
         </div>
+            <form method="POST" class="my-5 mx-5">
+                <div class="form-group">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                </div>
+                <button type="submit" class="btn btn-primary">Зарегестрироваться</button>
+            </form>
+        </div>
+    </div>
 
 
     </div>
