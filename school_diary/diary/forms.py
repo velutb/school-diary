@@ -31,7 +31,12 @@ from .models import Students
 #         ("З", "З")])
 
 
-class CustomStudentCreationForm(UserCreationForm):
+class StudentCreationForm(UserCreationForm):
     class Meta(UserCreationForm):
         model = Students
         fields = ('email', 'first_name', 'surname', 'second_name', 'grade')
+
+
+class StudentsLogin(forms.Form):
+    email = forms.EmailField(label="Электронная почта: ", max_length=50)
+    password = forms.CharField(label="Пароль: ", widget=forms.PasswordInput)

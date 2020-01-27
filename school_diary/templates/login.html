@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}
 <title>Войти в аккаунт</title>
@@ -12,16 +14,10 @@
 				<div class="card-body content-justify-center">
 					<h5 class="card-title">Войти</h5>
 					<div>
+                    <form>
 						<div class="form-group">
-							<label for="myemailinput">Электронная почта</label>
-							<input type="email" id="myemailinput" placeholder="myemail@example.com" class="form-control">
-						</div>
-						<div class="form-group">
-						<label for="mypassword">Пароль</label>
-						<input type="password" id="mypassword" class="form-control" placeholder="Пароль">
-						</div>
-						<button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
-						<div class="text-justify-center">
+							{% csrf_token %}
+                            {{ form|crispy }}
 							<a href="#">Забыли пароль?</a>
 						</div>
 					</form>

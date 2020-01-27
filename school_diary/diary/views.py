@@ -1,17 +1,31 @@
 from django.shortcuts import render
-from .forms import CustomStudentCreationForm
+from .forms import StudentCreationForm
 from django.http import HttpResponseRedirect
 
 
-def index(request):
+def students_registration(request):
     if request.method == 'POST':
-        form = CustomStudentCreationForm(request.POST)
+        form = StudentCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/')  # TODO Доделать ридерект на главную страницу
+            return HttpResponseRedirect('/')
         else:
-            form = CustomStudentCreationForm()
+            form = StudentCreationForm()
             return render(request, 'registration.html', {'form': form, 'display': 'block'})
     else:
-        form = CustomStudentCreationForm()
+        form = StudentCreationForm()
+        return render(request, 'registration.html', {'form': form, 'display': 'none'})
+
+
+def students_login(request):
+    if request.method == 'POST':
+        form = StudentCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+        else:
+            form = StudentCreationForm()
+            return render(request, 'registration.html', {'form': form, 'display': 'block'})
+    else:
+        form = StudentCreationForm()
         return render(request, 'registration.html', {'form': form, 'display': 'none'})
