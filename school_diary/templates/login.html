@@ -14,7 +14,7 @@
 				<div class="card-body content-justify-center">
 					<h5 class="card-title">Войти</h5>
 					<div>
-                    <form>
+                    <form method="post">
 						<div class="form-group">
 							{% csrf_token %}
                             {{ form|crispy }}
@@ -33,7 +33,7 @@
 						доступ к электронному дневнику, домашнему заданию,
 						минимумам и расписанию. 
 					</p>
-                    <a href="{% url 'registration' %}" class="btn btn-primary">Создаь аккаунт</a>
+                    <a href="{% url 'registration' %}" class="btn btn-primary">Создать аккаунт</a>
 				</div>
 			</div>
 		</div>
