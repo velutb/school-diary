@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Оценки</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <table class="table-sm table-bordered">
+            <caption>Оценки учеников</caption>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ученик</th>
+                <th scope="col">Средний б.</th>
+                {% for day in daylist %}
+                    <th scope="col">day</th>
+                {% endfor %}
+
+              </tr>
+            </thead>
+            <tbody>
+                {% for student in grade %}
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>student.surname</td>
+                        <td>a</td>
+                        {% for mark in student.mark_set.all %}
+                            <th scope="col">mark</th>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+{% endblock %}
